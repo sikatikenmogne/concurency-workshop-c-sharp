@@ -103,6 +103,55 @@ namespace concurency_workshop
             thread.Start(str);
             thread.Join();
             /// -------------------------------
+
+            /// <summary>
+            ///     Q5 - Pool Threads
+            /// </summary>
+
+            DelegateThreadFive delegateThreadFive = (obj) =>
+            {
+                String msg = obj.ToString();
+                Console.WriteLine("");
+
+                int i = 0;
+                while (i <= 9)
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Message :" + msg + " #" + (i + 1));
+                    i++;
+                }
+            };
+
+            Thread.Sleep(3000);
+
+            ManualResetEvent mre = new ManualResetEvent(false);
+
+            ThreadPool.QueueUserWorkItem((state) => {
+
+                Thread t1 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
+                t1.Name = "Thread 1";
+
+                Thread t2 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
+                t2.Name = "Thread 2";
+
+                Thread t3 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
+                t3.Name = "Thread 3";
+
+                t1.Start("Maiva-hub");
+
+                t2.Start("noumendarryl");
+
+                t3.Start("sikatikenmogne");
+
+                mre.Set();
+
+            });
+
+            // Wait for background threads to finish
+            mre.WaitOne(); // Block the main thread until the event is signaled
+
+            Console.WriteLine("Main thread terminating...");
+
         }
     }
 }
