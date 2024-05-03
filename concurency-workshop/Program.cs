@@ -14,8 +14,10 @@ namespace concurency_workshop
 
         delegate int MyDelegateMethod(int i1, int i2);
         delegate int MySecondDelegateMethod(int i2);
-        public delegate void ParameterizedThreadStart(Object message);
+        public delegate void ParameterizedDelegate(Object message);
 
+        /// Q5 pool thread
+        public delegate void DelegateThreadFive(Object obj);
 
         /// <summary>
         /// Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
@@ -84,7 +86,7 @@ namespace concurency_workshop
             /// </summary>
             //CLpara cLpara= new CLpara();
 
-            ParameterizedThreadStart parameterizedThreadStart = (Object message) => {
+            ParameterizedDelegate parameterizedDelegate = (Object message) => {
                 for (int i = 0; i <= 9; i++)
                 {
                     Thread.Sleep(1000);
@@ -95,11 +97,11 @@ namespace concurency_workshop
 
             String str = "Hi";
 
-            ThreadStart threadStartDelegate = new ThreadStart(() => parameterizedThreadStart(str)); // Assuming no argument is needed
-            
+            ParameterizedThreadStart threadStartDelegate = new ParameterizedThreadStart(parameterizedDelegate); // Assuming no argument is needed
             Thread thread = new Thread(threadStartDelegate);
 
-            thread.Start();
+            thread.Start(str);
+            thread.Join();
             /// -------------------------------
         }
     }
