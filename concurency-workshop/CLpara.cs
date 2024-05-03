@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace concurency_workshop
 {
-    internal class CLpara
+    static class CLpara
     {
-        public void methode_para()
+        public static void methode_para()
         {
 
             for(int i=0; i<=9; i++)
                 {
                     Thread.Sleep(1000);
 
-                    Console.WriteLine("Console message display #" + i+1);
+                    Console.WriteLine("Console message display #" + (i+1));
                 }
         }
     }

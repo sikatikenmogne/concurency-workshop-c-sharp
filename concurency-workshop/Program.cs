@@ -62,9 +62,9 @@ namespace concurency_workshop
             // ---------
 
             // THREAD
-            CLpara cLpara= new CLpara();
+            //CLpara cLpara= new CLpara();
 
-            ParameterizedThreadStart parameterizedThreadStart = cLpara.methode_para;
+            ParameterizedThreadStart parameterizedThreadStart = CLpara.methode_para;
 
             Thread thread = new Thread(() => { parameterizedThreadStart(); });
 
