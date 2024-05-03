@@ -16,6 +16,13 @@ namespace concurency_workshop
         delegate int MySecondDelegateMethod(int i2);
         public delegate void ParameterizedThreadStart(Object message);
 
+
+        /// <summary>
+        /// Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
+        /// </summary>
+        ///  <param name="id">The unique user ID.</param>
+        /// <returns>A string containing the username for the specified ID.</returns>
+
         public static int addMethod(int i1, int i2)
         {
             return i1 + i2;
@@ -25,8 +32,14 @@ namespace concurency_workshop
         static void Main(string[] args)
         {
 
-            // Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
-            //MyDelegateMethod myDelegateMethod = addMethod;
+            /// <summary>
+            ///     Q1 - Q2 Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
+            /// </summary>
+
+            // Using addMethod()
+            // MyDelegateMethod myDelegateMethod = addMethod;
+
+            // Using Lambda Expression
             MyDelegateMethod myDelegateMethod = (int x1, int x2) => x1 + x2;
 
             int result = myDelegateMethod(1, 2);
@@ -44,15 +57,18 @@ namespace concurency_workshop
 
             Console.WriteLine("or");
             // or
-
             MySecondDelegateMethod mySecondDelegateMethod = (int i) => { return i * i; };
 
             result = mySecondDelegateMethod(2);
 
             Console.WriteLine(result);
-            // ---------------
 
-            // Implement an anonymous type that has an 'int', a 'string'. Exposing its use
+            /// -------------------------------
+
+            /// <summary>
+            ///     Q3 Implement an anonymous type that has an 'int', a 'string'. Exposing its use
+            /// </summary>
+
             var johnDo = new {name = "unknow", id = 1 };
 
             Console.WriteLine(johnDo.name);
@@ -60,12 +76,15 @@ namespace concurency_workshop
             Console.WriteLine("-------------------");
             Console.WriteLine(johnDo.id);
             Console.WriteLine(johnDo.id.GetType());
-            // ---------
+            /// -------------------------------
 
-            // THREAD
+            /// Thread & Thread Param
+            /// <summary>
+            ///     Q4
+            /// </summary>
             //CLpara cLpara= new CLpara();
 
-            Action<Object> parameterizedThreadStart = (Object message) => {
+            ParameterizedThreadStart parameterizedThreadStart = (Object message) => {
                 for (int i = 0; i <= 9; i++)
                 {
                     Thread.Sleep(1000);
@@ -81,7 +100,7 @@ namespace concurency_workshop
             Thread thread = new Thread(threadStartDelegate);
 
             thread.Start();
-
+            /// -------------------------------
         }
     }
 }
