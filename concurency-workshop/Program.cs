@@ -64,7 +64,14 @@ namespace concurency_workshop
             // THREAD
             //CLpara cLpara= new CLpara();
 
-            ParameterizedThreadStart parameterizedThreadStart = CLpara.methode_para;
+            ParameterizedThreadStart parameterizedThreadStart = () => {
+                for (int i = 0; i <= 9; i++)
+                {
+                    Thread.Sleep(1000);
+
+                    Console.WriteLine("Console message display #" + (i + 1));
+                }
+            };
 
             Thread thread = new Thread(() => { parameterizedThreadStart(); });
 
