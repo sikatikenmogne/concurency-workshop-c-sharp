@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace concurency_workshop
 {
-    delegate int MyDelegateMethod(int i1, int i2);
-    delegate int MySecondDelegateMethod(int i2);
 
     internal class Program
     {
         private static Func<int, int> square;
+
+        delegate int MyDelegateMethod(int i1, int i2);
+        delegate int MySecondDelegateMethod(int i2);
+        public delegate void ParameterizedThreadStart();
 
         public static int addMethod(int i1, int i2)
         {
@@ -57,6 +60,16 @@ namespace concurency_workshop
             Console.WriteLine(johnDo.id);
             Console.WriteLine(johnDo.id.GetType());
             // ---------
+
+            // THREAD
+            CLpara cLpara= new CLpara();
+
+            ParameterizedThreadStart parameterizedThreadStart = cLpara.methode_para;
+
+            Thread thread = new Thread(() => { parameterizedThreadStart(); });
+
+            thread.Start();
+
         }
     }
 }
