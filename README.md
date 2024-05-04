@@ -13,7 +13,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 4. [x] 4. Implement threads (including parameterized threads)
 5. [x] 5. Implement thread pools
 6. [x] 6. Implement asynchronous delegates and callback procedures
-7. [ ] 7. Implement events
+7. [x] 7. Implement events
 8. [ ] 8. Implement mutexes
 9. [ ] 9. Implement monitors
 10. [ ] 10. Implement semaphores
@@ -201,6 +201,9 @@ Describe the expected output of the code.
 #### C. Class Implementation:
 
 Create the CLclient and CLserver classes to achieve the same output as observed in point B.
+
+#### D. Event Implementation:
+**💻 [related commit]()**
 
 ---
 ### Q8 - Synchronization:

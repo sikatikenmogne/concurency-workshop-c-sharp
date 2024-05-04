@@ -26,6 +26,8 @@ namespace concurency_workshop
         /// </summary>
         ///  <param name="id">The unique user ID.</param>
         /// <returns>A string containing the username for the specified ID.</returns>
+        private delegate void DELG(object o); 
+        
 
         public static int addMethod(int i1, int i2)
         {
@@ -240,8 +242,55 @@ namespace concurency_workshop
             
             Console.WriteLine("Q6 - ==============END=============");
             Console.WriteLine();
+            
+            
+            // -------------------------------
+
+            // <summary>
+            //     Q7 - Evt
+            // </summary>
+
+            Console.WriteLine("Q7 - =========Evt=========");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow; 
+            Console.WriteLine("Initialisation du thread principal...ok"); 
+            DELG delg; 
+            NS_SERVER.CLserver server = new NS_SERVER.CLserver(); 
+            NS_CLIENT.CLclient client1 = new NS_CLIENT.CLclient(server, "C1"); 
+            NS_CLIENT.CLclient client2 = new NS_CLIENT.CLclient(server, "C2"); 
+            string[] messages = {"msg1","msg2","msg3"}; 
+            delg = (o) => 
+                { 
+                    for (int i = 0; i < messages.Length; i++) 
+                    { 
+                        server.Msg = messages[i]; 
+                        System.Threading.Thread.Sleep(4000); 
+                    } 
+                }; 
+            Console.WriteLine("Début traitement asynchrone...ok"); 
+            IAsyncResult asr = delg.BeginInvoke(((object)("nostate")), 
+                (asR)=> 
+                { 
+                    delg.EndInvoke(asR); 
+                    Console.ForegroundColor = ConsoleColor.Yellow; 
+                    Console.WriteLine("Fin traitement asynchrone...ok"); 
+                },delg); 
+            while (!asr.IsCompleted) 
+            { 
+                Console.ForegroundColor = ConsoleColor.Green; 
+                Console.WriteLine("Traitement en cours sur le thread principal"); 
+                System.Threading.Thread.Sleep(3000); 
+            } 
+            
+            Console.Read(); 
+            
+            Console.WriteLine("Q7 - ==============END=============");
+            
+            // -------------------------------
 
             Console.WriteLine("Main thread terminating...");
+
         }
     }
 }
