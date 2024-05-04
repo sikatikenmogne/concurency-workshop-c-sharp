@@ -64,6 +64,32 @@ Repeat the exercise using a lambda expression instead of a class.
 
 Modify the code to create a thread that takes an argument ("Hi") and displays it in the console using a lambda expression.
 
+```C#
+Console.WriteLine("Q4 - =======Thread & Thread Param=======");
+Console.WriteLine();
+
+ParameterizedDelegate parameterizedDelegate = (Object message) =>
+{
+    for (int i = 0; i <= 9; i++)
+    {
+        Thread.Sleep(1000);
+
+        Console.WriteLine("      " + message + " #" + (i + 1));
+    }
+};
+
+String str = "Hi";
+
+ParameterizedThreadStart threadStartDelegate = new ParameterizedThreadStart(parameterizedDelegate);
+Thread thread = new Thread(threadStartDelegate);
+
+thread.Start(str);
+thread.Join();
+
+Console.WriteLine();
+Console.WriteLine("Q4 - ==============END=============");
+```
+
 ### Q5 - Pool Threads:
 
 Create a delegate that invokes a lambda expression to:
