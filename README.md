@@ -98,6 +98,9 @@ Unbox the argument to a string variable named msg.
 Display the message, iteration round, and sleep for 1 second in a loop (10 times).
 Create three parameterized threads t1, t2, and t3.
 Place the threads in a thread pool using an anonymous method and start them with their respective method names.
+
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/75aeaf055b62a29c0e7057fdeb30733ca8690ad7)**
+
 ### Q6 - Delegate Async:
 
 #### A. Delegate Definition:
