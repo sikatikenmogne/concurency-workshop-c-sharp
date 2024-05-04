@@ -10,7 +10,6 @@ namespace concurency_workshop
 
     internal class Program
     {
-        private static Func<int, int> square;
 
         delegate int MyDelegateMethod(int i1, int i2);
         delegate int MySecondDelegateMethod(int i2);
@@ -42,28 +41,36 @@ namespace concurency_workshop
             // MyDelegateMethod myDelegateMethod = addMethod;
 
             // Using Lambda Expression
-            MyDelegateMethod myDelegateMethod = (int x1, int x2) => x1 + x2;
+            Console.WriteLine("Q1 - ===========Delegate using method===========");
 
-            int result = myDelegateMethod(1, 2);
+            MyDelegateMethod myDelegateMethod = addMethod;
 
-            Console.WriteLine(result);
-            // ---------------
+            int x1 = 1;
+            int x2 = 2;
 
-            // Construct using a lambda expression a method that will calculate the square of a number
-            square = (int i) => { return i * i; };
+            Console.WriteLine();
+            Console.WriteLine("    int addMethod(int x, int y) {return x + y;}");
+            Console.WriteLine($"    myDelegateMethod = addMethod; => myDelegateMethod({x1}, {x2}) == {myDelegateMethod(x1, x2)}");
+            Console.WriteLine();
 
-            result = square(2);
+            Console.WriteLine("Q1 - ==============END=============");
+            
+            Console.WriteLine();
+            Console.WriteLine();
 
-            // TODO: C'est quoi la différence entre un Functeur (Func<int, int>) et les delegates
-            Console.WriteLine(result);
+            Console.WriteLine("Q2 - =======Delegate using Lambda expression======");
 
-            Console.WriteLine("or");
-            // or
-            MySecondDelegateMethod mySecondDelegateMethod = (int i) => { return i * i; };
+            myDelegateMethod = (int x, int y) => x + y;
+            
+            Console.WriteLine();
+            Console.WriteLine($"      myDelegateMethod = (int x, int y) => x + y; => myDelegateMethod({x1}, {x2}) == {myDelegateMethod(x1, x2)}");
+            Console.WriteLine();
 
-            result = mySecondDelegateMethod(2);
+            Console.WriteLine("Q2 - ==============END=============");
 
-            Console.WriteLine(result);
+            Console.WriteLine();
+            Console.WriteLine();
+
 
             /// -------------------------------
 
@@ -71,19 +78,33 @@ namespace concurency_workshop
             ///     Q3 Implement an anonymous type that has an 'int', a 'string'. Exposing its use
             /// </summary>
 
-            var johnDo = new {name = "unknow", id = 1 };
+            Console.WriteLine("Q3 - =======Anonymous Type=======");
 
-            Console.WriteLine(johnDo.name);
-            Console.WriteLine(johnDo.name.GetType());
-            Console.WriteLine("-------------------");
-            Console.WriteLine(johnDo.id);
-            Console.WriteLine(johnDo.id.GetType());
+            var johnDo = new {name = "unknow", id = 1 };
+            
+            Console.WriteLine();
+            Console.WriteLine("     Anonymous Type definition:");
+            Console.WriteLine("     new {name = \"unknow\", id = 1 }");
+            Console.WriteLine();
+            Console.WriteLine("     Reading anonymously typed variable");
+            Console.WriteLine($"     jonhDo: {johnDo}");
+            Console.WriteLine();
+
+            Console.WriteLine("Q3 - ==============END=============");
+
+            Console.WriteLine();
+            Console.WriteLine();
             /// -------------------------------
 
             /// Thread & Thread Param
             /// <summary>
             ///     Q4
             /// </summary>
+            /// 
+
+            Console.WriteLine("Q4 - =======Thread & Thread Param=======");
+
+            Console.WriteLine();
             //CLpara cLpara= new CLpara();
 
             ParameterizedDelegate parameterizedDelegate = (Object message) => {
@@ -91,7 +112,7 @@ namespace concurency_workshop
                 {
                     Thread.Sleep(1000);
 
-                    Console.WriteLine( message + " #" + (i + 1));
+                    Console.WriteLine("      " + message + " #" + (i + 1));
                 }
             };
 
@@ -102,11 +123,20 @@ namespace concurency_workshop
 
             thread.Start(str);
             thread.Join();
+
+            Console.WriteLine();
+
+            Console.WriteLine("Q4 - ==============END=============");
+
+            Console.WriteLine();
+
             /// -------------------------------
 
             /// <summary>
             ///     Q5 - Pool Threads
             /// </summary>
+
+            Console.WriteLine("Q5 - =======Pool Threads=======");
 
             DelegateThreadFive delegateThreadFive = (obj) =>
             {
@@ -117,32 +147,35 @@ namespace concurency_workshop
                 while (i <= 9)
                 {
                     Thread.Sleep(1000);
-                    Console.WriteLine("Message :" + msg + " #" + (i + 1));
+                    Console.WriteLine("      Message :" + msg + " #" + (i + 1));
                     i++;
                 }
             };
 
-            Thread.Sleep(3000);
 
-            ManualResetEvent mre = new ManualResetEvent(false);
+            // Create and start three parameterized threads
+            ManualResetEvent mre = new ManualResetEvent(false);  // Synchronization event
 
             ThreadPool.QueueUserWorkItem((state) => {
 
                 Thread t1 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
-                t1.Name = "Thread 1";
+                t1.Name = "Thread " + delegateThreadFive.Method.Name + " 1";
 
                 Thread t2 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
-                t2.Name = "Thread 2";
+                t2.Name = "Thread " + delegateThreadFive.Method.Name + " 2";
 
                 Thread t3 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
-                t3.Name = "Thread 3";
+                t3.Name = "Thread " + delegateThreadFive.Method.Name + " 3";
 
                 t1.Start("Maiva-hub");
-
                 t2.Start("noumendarryl");
-
                 t3.Start("sikatikenmogne");
 
+                t1.Join();
+                t2.Join();
+                t3.Join();
+
+                // Signal the main thread that background threads have started
                 mre.Set();
 
             });
@@ -150,7 +183,10 @@ namespace concurency_workshop
             // Wait for background threads to finish
             mre.WaitOne(); // Block the main thread until the event is signaled
 
+            Console.WriteLine("Q5 - ==============END=============");
+
             Console.WriteLine("Main thread terminating...");
+
 
         }
     }
