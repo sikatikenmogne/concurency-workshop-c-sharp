@@ -126,6 +126,9 @@ The callback will:
 The main thread will wait until the asynchronous result is completed.
 While waiting, it will display "The main thread is waiting for the call back end" every 2 seconds.
 When the async result is completed, it will display "callback end" in red on the console.
+
+*💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/68251158cfea50306251b79a0e3e541441ecd69e#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)*
+
 ### Q7 - Event:
 
 #### A. Code Analysis:
