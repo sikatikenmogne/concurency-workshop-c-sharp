@@ -12,7 +12,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 3. [x] 3. Implement anonymous types
 4. [x] 4. Implement threads (including parameterized threads)
 5. [x] 5. Implement thread pools
-6. [ ] 6. Implement asynchronous delegates and callback procedures
+6. [x] 6. Implement asynchronous delegates and callback procedures
 7. [ ] 7. Implement events
 8. [ ] 8. Implement mutexes
 9. [ ] 9. Implement monitors
