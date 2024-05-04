@@ -28,24 +28,30 @@ Version: 1.0
 ### Q1 - Delegate:
 
 Create a delegate named MyDelegate that takes two integers as arguments and returns their sum.
-```C#
+```csharp
 public delegate int MyDelegate(int v1, int v2);
 ```
+
+---
 ### Q2 - Lambda Expression:
 
 Construct a lambda expression that calculates the square of a number.
 
-```C#
+```csharp
 Func<int, int> square = x => x * x;
 ```
+
+---
 ### Q3 - Anonymous Type:
 
 Implement an anonymous type with an integer and a string property, and demonstrate its usage.
 
-```C#
+```csharp
 var person = new { Name = "John Doe", Age = 30 };
 Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
 ```
+
+---
 ### Q4 - Thread & Thread Param:
 
 #### A. Non-Static Class:
@@ -90,6 +96,7 @@ Console.WriteLine();
 Console.WriteLine("Q4 - ==============END=============");
 ```
 
+---
 ### Q5 - Pool Threads:
 
 Create a delegate that invokes a lambda expression to:
@@ -101,6 +108,7 @@ Place the threads in a thread pool using an anonymous method and start them with
 
 **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/75aeaf055b62a29c0e7057fdeb30733ca8690ad7)**
 
+---
 ### Q6 - Delegate Async:
 
 #### A. Delegate Definition:
@@ -127,8 +135,9 @@ The main thread will wait until the asynchronous result is completed.
 While waiting, it will display "The main thread is waiting for the call back end" every 2 seconds.
 When the async result is completed, it will display "callback end" in red on the console.
 
-*💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/68251158cfea50306251b79a0e3e541441ecd69e#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)*
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/68251158cfea50306251b79a0e3e541441ecd69e#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)**
 
+---
 ### Q7 - Event:
 
 #### A. Code Analysis:
@@ -193,6 +202,7 @@ Describe the expected output of the code.
 
 Create the CLclient and CLserver classes to achieve the same output as observed in point B.
 
+---
 ### Q8 - Synchronization:
 
 Implement a mechanism that controls access to objects using a single-threaded object lock. This ensures only one thread can access a critical section at a time.
@@ -200,6 +210,8 @@ Implement a mechanism that controls access to objects using a single-threaded ob
 Identify the critical section (code block) to protect.
 Implement the appropriate synchronization mechanism (e.g., lock) to control access.
 Demonstrate the use of this mechanism with two threads ("T1" and "T2") accessing the critical section.
+
+---
 ### Q9 - Synchronization:
 
 Implement a mechanism that grants exclusive access to a shared resource using a core synchronization primitive. Only one thread can access the resource at a time.
@@ -207,6 +219,8 @@ Implement a mechanism that grants exclusive access to a shared resource using a 
 Identify the code block to protect.
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads ("T1" and "T2") accessing the shared resource.
+
+---
 ### Q10 - Synchronization:
 
 Control access to a resource pool using a core synchronization mechanism. Threads entering the pool decrement a counter, and releasing the pool increments it. When the counter reaches zero, new requests are blocked until other threads release the pool.
@@ -214,6 +228,8 @@ Control access to a resource pool using a core synchronization mechanism. Thread
 Identify the resource pool and the maximum access count.
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads having maximum access and three competitor threads.
+
+---
 ### Q11 - Synchronization:
 
 Protect a resource read by multiple threads and written by one thread at a time. Implement a mechanism that allows:
