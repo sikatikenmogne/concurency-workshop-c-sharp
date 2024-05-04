@@ -5,19 +5,19 @@ This document outlines a series of exercises designed to explore various threadi
 
 Apply the concepts of threading and synchronization mechanisms to solve practical problems in a multithreaded environment.
 
-Technical Objectives:
+**Technical Objectives:**
 
-1. Implement delegates
-2. Implement lambda expressions
-3. Implement anonymous types
-4. Implement threads (including parameterized threads)
-5. Implement thread pools
-6. Implement asynchronous delegates and callback procedures
-7. Implement events
-8. Implement mutexes
-9. Implement monitors
-10. Implement semaphores
-11. Implement readerWriterLockSlim
+1. [x] 1. Implement delegates
+2. [x] 2. Implement lambda expressions
+3. [x] 3. Implement anonymous types
+4. [x] 4. Implement threads (including parameterized threads)
+5. [x] 5. Implement thread pools
+6. [ ] 6. Implement asynchronous delegates and callback procedures
+7. [ ] 7. Implement events
+8. [ ] 8. Implement mutexes
+9. [ ] 9. Implement monitors
+10. [ ] 10. Implement semaphores
+11. [ ] 11. Implement readerWriterLockSlim
 
 Duration: 6 hours
 
@@ -28,11 +28,9 @@ Version: 1.0
 ### Q1 - Delegate:
 
 Create a delegate named MyDelegate that takes two integers as arguments and returns their sum.
-
-C#
+```C#
 public delegate int MyDelegate(int v1, int v2);
-Utilisez ce code avec précaution.
-content_copy
+```
 ### Q2 - Lambda Expression:
 
 Construct a lambda expression that calculates the square of a number.
