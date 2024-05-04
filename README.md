@@ -64,7 +64,7 @@ Repeat the exercise using a lambda expression instead of a class.
 
 Modify the code to create a thread that takes an argument ("Hi") and displays it in the console using a lambda expression.
 
-```C#
+```csharp
 Console.WriteLine("Q4 - =======Thread & Thread Param=======");
 Console.WriteLine();
 
@@ -132,9 +132,59 @@ When the async result is completed, it will display "callback end" in red on the
 
 Observe the provided code and understand its functionality.
 
+```csharp
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+ 
+namespace NS_MAIN 
+{ 
+    class Program 
+    { 
+        private delegate void DELG(object o); 
+        static void Main(string[] args) 
+        { 
+            Console.ForegroundColor = ConsoleColor.Yellow; 
+            Console.WriteLine("Initialisation du thread principal...ok"); 
+            DELG delg; 
+            NS_SERVER.CLserver server = new NS_SERVER.CLserver(); 
+            NS_CLIENT.CLclient client1 = new NS_CLIENT.CLclient(server, "C1"); 
+            NS_CLIENT.CLclient client2 = new NS_CLIENT.CLclient(server, "C2"); 
+            string[] messages = {"msg1","msg2","msg3"}; 
+            delg = (o) => 
+                { 
+                    for (int i = 0; i < messages.Length; i++) 
+                    { 
+                        server.Msg = messages[i]; 
+                        System.Threading.Thread.Sleep(4000); 
+                    } 
+                }; 
+            Console.WriteLine("Début traitement asynchrone...ok"); 
+            IAsyncResult asr = delg.BeginInvoke(((object)("nostate")), 
+                (asR)=> 
+                { 
+                    delg.EndInvoke(asR); 
+                    Console.ForegroundColor = ConsoleColor.Yellow; 
+                    Console.WriteLine("Fin traitement asynchrone...ok"); 
+                },delg); 
+            while (!asr.IsCompleted) 
+            { 
+                Console.ForegroundColor = ConsoleColor.Green; 
+                Console.WriteLine("Traitement en cours sur le thread principal"); 
+                System.Threading.Thread.Sleep(3000); 
+            } 
+            Console.Read(); 
+        } 
+    }   
+}
+```
+
 #### B. Display Observation:
 
 Describe the expected output of the code.
+
+![image.png](console-output.png)
 
 #### C. Class Implementation:
 

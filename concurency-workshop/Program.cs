@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace concurency_workshop
         delegate int MySecondDelegateMethod(int i2);
         public delegate void ParameterizedDelegate(Object message);
 
+        public delegate void AsyncDelegate(object obj);
+        
         /// Q5 pool thread
         public delegate void DelegateThreadFive(Object obj);
 
@@ -188,12 +191,57 @@ namespace concurency_workshop
 
             // Wait for background threads to finish
             mre.WaitOne(); // Block the main thread until the event is signaled
-
+            
+            Console.WriteLine();
             Console.WriteLine("Q5 - ==============END=============");
+            Console.WriteLine();
+
+
+            /// -------------------------------
+
+            /// <summary>
+            ///     Q6 - Delegate Async
+            /// </summary>
+
+            Console.WriteLine("Q6 - =======Delegate Async=======");
+            
+            AsyncDelegate asyncDelegate = (obj) =>
+            {
+                string msg = obj.ToString();
+                for (int i = 0; i <= 9; i++)
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Message :" + msg + " #" + (i + 1));
+                }
+            };
+
+            // BeginInvoke method
+            AsyncCallback callback = (IAsyncResult ar) =>
+            {
+                AsyncDelegate delegateInstance = (AsyncDelegate)((AsyncResult)ar).AsyncDelegate;
+                delegateInstance.EndInvoke(ar);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Callback completed");
+                Console.ResetColor();
+            };
+            
+            // BeginInvoke with callback
+            IAsyncResult asyncResult = asyncDelegate.BeginInvoke("T1", callback, null);
+
+            // asyncResult.AsyncWaitHandle.WaitOne();
+            while (!asyncResult.IsCompleted)
+            {
+                Console.WriteLine("The main thread is waiting for the call back end");
+                Thread.Sleep(2000);
+            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Callback end");
+            Console.ResetColor();
+            
+            Console.WriteLine("Q6 - ==============END=============");
+            Console.WriteLine();
 
             Console.WriteLine("Main thread terminating...");
-
-
         }
     }
 }
