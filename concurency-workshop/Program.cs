@@ -18,16 +18,17 @@ namespace concurency_workshop
 
         public delegate void AsyncDelegate(object obj);
         
-        /// Q5 pool thread
+        // Q5 pool thread
         public delegate void DelegateThreadFive(Object obj);
 
-        /// <summary>
-        /// Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
-        /// </summary>
-        ///  <param name="id">The unique user ID.</param>
-        /// <returns>A string containing the username for the specified ID.</returns>
+        // Q6 Evt
         private delegate void DELG(object o); 
         
+        // <summary>
+        // Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
+        // </summary>
+        //  <param name="id">The unique user ID.</param>
+        // <returns>A string containing the username for the specified ID.</returns>
 
         public static int addMethod(int i1, int i2)
         {
@@ -38,9 +39,9 @@ namespace concurency_workshop
         static void Main(string[] args)
         {
 
-            /// <summary>
-            ///     Q1 - Q2 Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
-            /// </summary>
+            // <summary>
+            //     Q1 - Q2 Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
+            // </summary>
 
             // Using addMethod()
             // MyDelegateMethod myDelegateMethod = addMethod;
@@ -77,11 +78,11 @@ namespace concurency_workshop
             Console.WriteLine();
 
 
-            /// -------------------------------
+            // -------------------------------
 
-            /// <summary>
-            ///     Q3 Implement an anonymous type that has an 'int', a 'string'. Exposing its use
-            /// </summary>
+            // <summary>
+            //     Q3 Implement an anonymous type that has an 'int', a 'string'. Exposing its use
+            // </summary>
 
             Console.WriteLine("Q3 - =======Anonymous Type=======");
 
@@ -99,13 +100,13 @@ namespace concurency_workshop
 
             Console.WriteLine();
             Console.WriteLine();
-            /// -------------------------------
+            // -------------------------------
 
-            /// Thread & Thread Param
-            /// <summary>
-            ///     Q4
-            /// </summary>
-            /// 
+            // Thread & Thread Param
+            // <summary>
+            //     Q4
+            // </summary>
+            // 
 
             Console.WriteLine("Q4 - =======Thread & Thread Param=======");
 
@@ -135,11 +136,11 @@ namespace concurency_workshop
 
             Console.WriteLine();
 
-            /// -------------------------------
+            // -------------------------------
 
-            /// <summary>
-            ///     Q5 - Pool Threads
-            /// </summary>
+            // <summary>
+            //     Q5 - Pool Threads
+            // </summary>
 
             Console.WriteLine("Q5 - =======Pool Threads=======");
 
@@ -199,11 +200,11 @@ namespace concurency_workshop
             Console.WriteLine();
 
 
-            /// -------------------------------
+            // -------------------------------
 
-            /// <summary>
-            ///     Q6 - Delegate Async
-            /// </summary>
+            // <summary>
+            //     Q6 - Delegate Async
+            // </summary>
 
             Console.WriteLine("Q6 - =======Delegate Async=======");
             
