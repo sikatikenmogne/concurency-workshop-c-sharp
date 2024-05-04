@@ -203,7 +203,8 @@ Describe the expected output of the code.
 Create the CLclient and CLserver classes to achieve the same output as observed in point B.
 
 #### D. Event Implementation:
-**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/8bebce38586cd5539dda5bc69c1d9ebd656b6751)**
+1. **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/8bebce38586cd5539dda5bc69c1d9ebd656b6751)**
+2. **🪛 [console output layout](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/34cf86137661097cd15f124857d704ccdf125dcc)**
 
 ---
 ### Q8 - Synchronization:
