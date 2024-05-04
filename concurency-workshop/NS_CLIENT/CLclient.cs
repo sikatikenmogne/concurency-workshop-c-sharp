@@ -10,12 +10,17 @@ namespace concurency_workshop.NS_CLIENT
         {
             _name = name;
             
-            server.MessageReceived += Server_MessageReceived;  
+            server.MessageReceived += Server_MessageReceived;
+
+            Console.WriteLine($"Initialisation du client {_name}...ok");
+
         }   
         
         private void Server_MessageReceived(object sender, string message)
         {
-            Console.WriteLine($"{_name} received message: {message}");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"Message recu par {_name} -- > {message}");
+            Console.ResetColor();
         }
     }
 }

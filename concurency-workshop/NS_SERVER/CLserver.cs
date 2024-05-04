@@ -1,7 +1,14 @@
-﻿namespace concurency_workshop.NS_SERVER
+﻿using System;
+
+namespace concurency_workshop.NS_SERVER
 {
     public class CLserver
     {
+        public CLserver()
+        {
+            Console.WriteLine("Initialisation du serveur...ok");
+        }
+        
         // Declare a delegate for the event
         public delegate void MessageEventHandler(object sender, string message);
 
