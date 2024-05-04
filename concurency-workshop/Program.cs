@@ -138,6 +138,7 @@ namespace concurency_workshop
 
             Console.WriteLine("Q5 - =======Pool Threads=======");
 
+            // Delegate definition for thread execution
             DelegateThreadFive delegateThreadFive = (obj) =>
             {
                 String msg = obj.ToString();
@@ -153,11 +154,14 @@ namespace concurency_workshop
             };
 
 
-            // Create and start three parameterized threads
+            // Create a synchronization event for thread completion
             ManualResetEvent mre = new ManualResetEvent(false);  // Synchronization event
 
-            ThreadPool.QueueUserWorkItem((state) => {
+            // Queue a task to the thread pool
+            ThreadPool.QueueUserWorkItem((state) => 
+            {
 
+                // Create and start three parameterized threads
                 Thread t1 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
                 t1.Name = "Thread " + delegateThreadFive.Method.Name + " 1";
 
@@ -167,10 +171,12 @@ namespace concurency_workshop
                 Thread t3 = new Thread(new ParameterizedThreadStart(delegateThreadFive));
                 t3.Name = "Thread " + delegateThreadFive.Method.Name + " 3";
 
+                // Start the threads with specific messages as arguments
                 t1.Start("Maiva-hub");
                 t2.Start("noumendarryl");
                 t3.Start("sikatikenmogne");
 
+                // Wait for all three threads to finish
                 t1.Join();
                 t2.Join();
                 t3.Join();
