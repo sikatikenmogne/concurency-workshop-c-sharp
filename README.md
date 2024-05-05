@@ -16,7 +16,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 7. [x] 7. Implement events
 8. [x] 8. Implement mutexes
 9. [x] 9. Implement monitors
-10. [ ] 10. Implement semaphores
+10. [x] 10. Implement semaphores
 11. [ ] 11. Implement readerWriterLockSlim
 
 Duration: 6 hours

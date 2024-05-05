@@ -29,8 +29,9 @@ namespace concurency_workshop
         private static readonly object lockObject = new object();
         private static int var = 0;
         
-        // Q9 Synchronization
-        // private static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        // Q10 Synchronization
+        private static string simu_cnx_db = "Utilisation de la base de données";
+        private static SemaphoreSlim semaphore = new SemaphoreSlim(2, 2);
         
         // <summary>
         // Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
@@ -381,11 +382,77 @@ namespace concurency_workshop
             Console.WriteLine("Q9 - ==============END=============");
 
             Console.WriteLine();
+            
+            // -------------------------------
+            
+            // <summary>
+            //     Q10 - Synchronization
+            // </summary>
+
+            Console.WriteLine("Q10 - =========Synchronization=========");
+            Console.WriteLine();
+
+            SafeDelegate safeDelegate3 = (object state) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Thread {0} is waiting to enter the semaphore.", state);
+                Console.ResetColor();
+                
+                semaphore.Wait();
+                
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Thread {0} has entered the semaphore.", state);
+                Console.ResetColor();
+                
+                try
+                {
+                    string name_thread = (string)state;
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine("Thread -> {0} -- Etat -> {1}", name_thread, simu_cnx_db);
+                    Console.ResetColor();
+                    Thread.Sleep(2000);
+                }
+                finally
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Thread {0} is releasing the semaphore.", state);
+                    Console.ResetColor();
+                    
+                    semaphore.Release();
+                    
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Thread {0} has released the semaphore.", state);
+                    Console.ResetColor();
+                }
+            };
+
+            Thread t8 = new Thread(new ParameterizedThreadStart(safeDelegate3));
+            Thread t9 = new Thread(new ParameterizedThreadStart(safeDelegate3));
+            Thread t10 = new Thread(new ParameterizedThreadStart(safeDelegate3));
+            Thread t11 = new Thread(new ParameterizedThreadStart(safeDelegate3));
+            Thread t12 = new Thread(new ParameterizedThreadStart(safeDelegate3));
+
+            t8.Start("T1");
+            t9.Start("T2");
+            t10.Start("T3");
+            t11.Start("T4");
+            t12.Start("T5");
+
+            t8.Join();
+            t9.Join();
+            t10.Join();
+            t11.Join();
+            t12.Join();
+            
+            Console.WriteLine();
+            Console.WriteLine("Q10 - ==============END=============");
+            Console.WriteLine();
+
+            
+            Console.WriteLine("Main thread terminating...");
 
             // -------------------------------
 
-            Console.WriteLine("Main thread terminating...");
-            
         }
     }
 }
