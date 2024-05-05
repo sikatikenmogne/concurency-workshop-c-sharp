@@ -243,7 +243,7 @@ Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads ("T1" and "T2") accessing the shared resource.
 
 #### D. Monitors Implementation:
-**💻 [related commit]()**
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/68303d3a6a0e06ef2bf13ea36bdc79bd9e040e00)**
 
 ---
 ### Q10 - Synchronization:
@@ -253,6 +253,23 @@ Control access to a resource pool using a core synchronization mechanism. Thread
 Identify the resource pool and the maximum access count.
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads having maximum access and three competitor threads.
+
+```csharp
+private static string simu_cnx_db = "Utilisation de la base de données";
+```
+
+The code to protect is as follows:
+
+```csharp
+string name_thread = (string)state;
+
+Console.WriteLine("Thread -> {0} -- Etat -> {1}", name_thread, simu_cnx_db.ToString());
+
+System.Threading.Thread.Sleep(2000);
+```
+
+#### D. Semaphores Implementation:
+**💻 [related commit]()**
 
 ---
 ### Q11 - Synchronization:
