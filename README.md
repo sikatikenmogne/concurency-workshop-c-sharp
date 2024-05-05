@@ -15,7 +15,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 6. [x] 6. Implement asynchronous delegates and callback procedures
 7. [x] 7. Implement events
 8. [x] 8. Implement mutexes
-9. [ ] 9. Implement monitors
+9. [x] 9. Implement monitors
 10. [ ] 10. Implement semaphores
 11. [ ] 11. Implement readerWriterLockSlim
 
@@ -241,6 +241,9 @@ for (int i = 0; i < 3; i++)
 
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads ("T1" and "T2") accessing the shared resource.
+
+#### D. Monitors Implementation:
+**💻 [related commit]()**
 
 ---
 ### Q10 - Synchronization:

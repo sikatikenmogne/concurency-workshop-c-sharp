@@ -24,10 +24,13 @@ namespace concurency_workshop
         // Q7 Evt
         private delegate void DELG(object o); 
         
-        // Q8 Synchronization
+        // Q8 - Q9 Synchronization
         // Define a lock object
         private static readonly object lockObject = new object();
         private static int var = 0;
+        
+        // Q9 Synchronization
+        // private static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         
         // <summary>
         // Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
@@ -332,6 +335,55 @@ namespace concurency_workshop
             Console.WriteLine();
             // -------------------------------
             
+            // <summary>
+            //     Q9 - Synchronization
+            // </summary>
+
+            Console.WriteLine("Q9 - =========Synchronization=========");
+            Console.WriteLine();
+
+            var = 0;
+            
+            SafeDelegate safeDelegate2 = (object state) =>
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    bool lockTaken = false;
+                    try
+                    {
+                        Monitor.Enter(lockObject, ref lockTaken);
+                        string name_thread = (string)state;
+                        ++var;
+                        Console.WriteLine("Thread -> {0} -- var -> {1}", name_thread, var.ToString());
+                        Thread.Sleep(2000);
+                    }
+                    finally
+                    {
+                        if (lockTaken)
+                        {
+                            Monitor.Exit(lockObject);
+                        }
+                    }
+                }            
+            };
+            
+            Thread t6 = new Thread(new ParameterizedThreadStart(safeDelegate2));
+            Thread t7 = new Thread(new ParameterizedThreadStart(safeDelegate2));
+            
+            t6.Start("T1");
+            t7.Start("T2");
+
+            t6.Join();
+            t7.Join();
+            
+            Console.WriteLine();
+
+            Console.WriteLine("Q9 - ==============END=============");
+
+            Console.WriteLine();
+
+            // -------------------------------
+
             Console.WriteLine("Main thread terminating...");
             
         }
