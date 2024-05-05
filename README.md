@@ -23,7 +23,7 @@ Duration: 6 hours
 
 Version: 1.0
 
-[Document](./PDF/Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf)
+**[Document](./PDF/Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf)**
 
 ## Exercises:
 
@@ -288,4 +288,4 @@ Two in read mode.
 Two in write mode (one initializes an array with odd values, the other with even values).
 
 #### D. ReaderWriterLockSlim Implementation:
-**💻 [related commit]()**
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/a78c4d67d367ccaaec52fa159a0200bddc00c63d#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)**

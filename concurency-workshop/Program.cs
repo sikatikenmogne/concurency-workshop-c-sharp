@@ -453,8 +453,6 @@ namespace concurency_workshop
             Console.WriteLine();
 
             
-            Console.WriteLine("Main thread terminating...");
-
             // -------------------------------
             
             // <summary>
@@ -487,6 +485,8 @@ namespace concurency_workshop
             Console.WriteLine();
             Console.WriteLine("Q11 - ==============END=============");
             Console.WriteLine();
+
+            Console.WriteLine("Main thread terminating...");
 
             // -------------------------------
         }
