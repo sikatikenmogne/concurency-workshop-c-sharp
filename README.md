@@ -223,14 +223,22 @@ Implement the appropriate synchronization mechanism (e.g., lock) to control acce
 Demonstrate the use of this mechanism with two threads ("T1" and "T2") accessing the critical section.
 
 #### D. Mutexes Implementation:
-**💻 [related commit]()**
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/9981c7c21583211c9ad45b9719929155304ad59f)**
 
 ---
 ### Q9 - Synchronization:
 
 Implement a mechanism that grants exclusive access to a shared resource using a core synchronization primitive. Only one thread can access the resource at a time.
 
-Identify the code block to protect.
+```csharp
+for (int i = 0; i < 3; i++)
+{
+    ++var;
+    Console.WriteLine("Thread -> {0} -- var -> {1}", name_thread,var.ToString());
+    System.Threading.Thread.Sleep(2000); 
+}
+```
+
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads ("T1" and "T2") accessing the shared resource.
 
