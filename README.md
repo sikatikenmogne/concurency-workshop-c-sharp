@@ -17,7 +17,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 8. [x] 8. Implement mutexes
 9. [x] 9. Implement monitors
 10. [x] 10. Implement semaphores
-11. [ ] 11. Implement readerWriterLockSlim
+11. [x] 11. Implement readerWriterLockSlim
 
 Duration: 6 hours
 
@@ -286,3 +286,6 @@ Choose the appropriate synchronization mechanism (e.g., ReaderWriterLockSlim).
 Implement the mechanism with four threads:
 Two in read mode.
 Two in write mode (one initializes an array with odd values, the other with even values).
+
+#### D. ReaderWriterLockSlim Implementation:
+**💻 [related commit]()**

@@ -33,6 +33,10 @@ namespace concurency_workshop
         private static string simu_cnx_db = "Utilisation de la base de données";
         private static SemaphoreSlim semaphore = new SemaphoreSlim(2, 2);
         
+        // Q11 Synchronization
+        static ReaderWriterLockSlim rwl = new ReaderWriterLockSlim();
+        static int sharedResource = 0;
+        
         // <summary>
         // Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
         // </summary>
@@ -452,7 +456,75 @@ namespace concurency_workshop
             Console.WriteLine("Main thread terminating...");
 
             // -------------------------------
+            
+            // <summary>
+            //     Q11 - Synchronization
+            // </summary>
 
+            Console.WriteLine("Q11 - =========Synchronization=========");
+            Console.WriteLine();
+
+            Thread writer1 = new Thread(Write);
+            writer1.Name = "Writer 1";
+            Thread writer2 = new Thread(Write);
+            writer2.Name = "Writer 2";
+
+            Thread reader1 = new Thread(Read);
+            reader1.Name = "Reader 1";
+            Thread reader2 = new Thread(Read);
+            reader2.Name = "Reader 2";
+
+            writer1.Start();
+            reader1.Start();
+            writer2.Start();
+            reader2.Start();
+
+            writer1.Join();
+            reader1.Join();
+            writer2.Join();
+            reader2.Join();
+            
+            Console.WriteLine();
+            Console.WriteLine("Q11 - ==============END=============");
+            Console.WriteLine();
+
+            // -------------------------------
+        }
+        
+        
+        static void Write()
+        {
+            rwl.EnterWriteLock();
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{Thread.CurrentThread.Name} is writing to the shared resource.");
+                sharedResource = new Random().Next(1, 100);
+                Console.WriteLine($"{Thread.CurrentThread.Name} has written {sharedResource} to the shared resource.");
+                Console.ResetColor();
+                Thread.Sleep(1000);
+            }
+            finally
+            {
+                rwl.ExitWriteLock();
+            }
+        }
+
+        static void Read()
+        {
+            rwl.EnterReadLock();
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{Thread.CurrentThread.Name} is reading from the shared resource.");
+                Console.WriteLine($"{Thread.CurrentThread.Name} has read {sharedResource} from the shared resource.");
+                Console.ResetColor();
+                Thread.Sleep(1000);
+            }
+            finally
+            {
+                rwl.ExitReadLock();
+            }
         }
     }
 }
