@@ -21,8 +21,13 @@ namespace concurency_workshop
         // Q5 pool thread
         public delegate void DelegateThreadFive(Object obj);
 
-        // Q6 Evt
+        // Q7 Evt
         private delegate void DELG(object o); 
+        
+        // Q8 Synchronization
+        // Define a lock object
+        private static readonly object lockObject = new object();
+        private static int var = 0;
         
         // <summary>
         // Q1 - Delegate* Let the method 'int method (int v1, int v2)'. This method adds two values and returns the result. Write the delegate who will invoke this method
@@ -35,6 +40,7 @@ namespace concurency_workshop
             return i1 + i2;
         }
 
+        public delegate void SafeDelegate(object state);
 
         static void Main(string[] args)
         {
@@ -284,14 +290,50 @@ namespace concurency_workshop
                 System.Threading.Thread.Sleep(3000); 
             } 
             
-            Console.Read(); 
+            // Console.Read(); 
+            Console.ResetColor();
             
             Console.WriteLine("Q7 - ==============END=============");
-            
+            Console.WriteLine();
+
             // -------------------------------
 
-            Console.WriteLine("Main thread terminating...");
+            // <summary>
+            //     Q8 - Synchronization
+            // </summary>
 
+            Console.WriteLine("Q8 - =========Synchronization=========");
+            Console.WriteLine();
+
+            SafeDelegate safeDelegate = (object state) =>
+            {
+                lock (lockObject)
+                {
+                    string name_thread = (string)state;
+                    ++var;
+                    Console.WriteLine("Thread -> {0} -- var --> {1}", name_thread, var.ToString());
+                    Thread.Sleep(2000);
+                }
+            };
+            
+            Thread t4 = new Thread(new ParameterizedThreadStart(safeDelegate));
+            Thread t5 = new Thread(new ParameterizedThreadStart(safeDelegate));
+            
+            t4.Start("T4");
+            t5.Start("T5");
+
+            t4.Join();
+            t5.Join();
+
+            Console.WriteLine();
+
+            Console.WriteLine("Q8 - ==============END=============");
+
+            Console.WriteLine();
+            // -------------------------------
+            
+            Console.WriteLine("Main thread terminating...");
+            
         }
     }
 }

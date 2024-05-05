@@ -14,7 +14,7 @@ Apply the concepts of threading and synchronization mechanisms to solve practica
 5. [x] 5. Implement thread pools
 6. [x] 6. Implement asynchronous delegates and callback procedures
 7. [x] 7. Implement events
-8. [ ] 8. Implement mutexes
+8. [x] 8. Implement mutexes
 9. [ ] 9. Implement monitors
 10. [ ] 10. Implement semaphores
 11. [ ] 11. Implement readerWriterLockSlim
@@ -221,6 +221,9 @@ System.Threading.Thread.Sleep(2000);
 Identify the critical section (code block) to protect.
 Implement the appropriate synchronization mechanism (e.g., lock) to control access.
 Demonstrate the use of this mechanism with two threads ("T1" and "T2") accessing the critical section.
+
+#### D. Mutexes Implementation:
+**💻 [related commit]()**
 
 ---
 ### Q9 - Synchronization:
