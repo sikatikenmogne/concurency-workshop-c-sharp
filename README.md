@@ -269,7 +269,7 @@ System.Threading.Thread.Sleep(2000);
 ```
 
 #### D. Semaphores Implementation:
-**💻 [related commit]()**
+**💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/b44844cfbc9b2f03be162bec374514f2b83f7a93#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)**
 
 ---
 ### Q11 - Synchronization:
