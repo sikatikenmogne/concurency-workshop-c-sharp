@@ -23,6 +23,8 @@ Duration: 6 hours
 
 Version: 1.0
 
+[Document](./PDF/Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf)
+
 ## Exercises:
 
 ### Q1 - Delegate:
