@@ -211,6 +211,13 @@ Create the CLclient and CLserver classes to achieve the same output as observed 
 
 Implement a mechanism that controls access to objects using a single-threaded object lock. This ensures only one thread can access a critical section at a time.
 
+```csharp
+string name_thread = (string)state;
+++var;
+Console.WriteLine("Thread -> {0} -- var -> {1}", name_thread, var.ToString());
+System.Threading.Thread.Sleep(2000);
+```
+
 Identify the critical section (code block) to protect.
 Implement the appropriate synchronization mechanism (e.g., lock) to control access.
 Demonstrate the use of this mechanism with two threads ("T1" and "T2") accessing the critical section.
