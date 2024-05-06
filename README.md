@@ -23,9 +23,10 @@ Duration: 6 hours
 
 Version: 1.0
 
-**[Document](./PDF/Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf)**
-
 ## Exercises:
+
+**[Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf](./PDF/Workshop_Exercise_Threading_and_Synchronization_Techniques.pdf)**
+
 
 ### Q1 - Delegate:
 
@@ -224,7 +225,7 @@ Identify the critical section (code block) to protect.
 Implement the appropriate synchronization mechanism (e.g., lock) to control access.
 Demonstrate the use of this mechanism with two threads ("T1" and "T2") accessing the critical section.
 
-#### D. Mutexes Implementation:
+#### A. Mutexes Implementation:
 **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/9981c7c21583211c9ad45b9719929155304ad59f)**
 
 ---
@@ -244,7 +245,7 @@ for (int i = 0; i < 3; i++)
 Choose the appropriate core synchronization mechanism (e.g., semaphore).
 Implement the mechanism and demonstrate its use with two threads ("T1" and "T2") accessing the shared resource.
 
-#### D. Monitors Implementation:
+#### A. Monitors Implementation:
 **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/68303d3a6a0e06ef2bf13ea36bdc79bd9e040e00)**
 
 ---
@@ -270,7 +271,7 @@ Console.WriteLine("Thread -> {0} -- Etat -> {1}", name_thread, simu_cnx_db.ToStr
 System.Threading.Thread.Sleep(2000);
 ```
 
-#### D. Semaphores Implementation:
+#### A. Semaphores Implementation:
 **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/b44844cfbc9b2f03be162bec374514f2b83f7a93#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)**
 
 ---
@@ -287,5 +288,5 @@ Implement the mechanism with four threads:
 Two in read mode.
 Two in write mode (one initializes an array with odd values, the other with even values).
 
-#### D. ReaderWriterLockSlim Implementation:
+#### A. ReaderWriterLockSlim Implementation:
 **💻 [related commit](https://github.com/sikatikenmogne/concurency-workshop-c-sharp/commit/a78c4d67d367ccaaec52fa159a0200bddc00c63d#diff-967c26d563bd5dfcfd93d623c93ea99e8f04db177004b6e18964a7c6588c4976)**
